@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { ServiceOrder } from './types';
 import { Header } from './components/Header';
 import { NewOrderBox } from './components/NewOrderBox';
+import { ServiceList } from './components/ServiceList';
+
 
 
 function App() {
@@ -19,7 +21,6 @@ function App() {
 
 return ( //prop orders passa os dados para o filho(ListaServicos) para eles trabalharem
     <div className="app-container">
-            {/* O Header fica no topo, fora do <main> */}
             <Header />
     {/* Container principal com Grid para o Box ficar à esquerda */}
       <main className="max-w-[1600px] mx-auto px-10 grid grid-cols-12 gap-8">
@@ -31,10 +32,7 @@ return ( //prop orders passa os dados para o filho(ListaServicos) para eles trab
 
         {/* COLUNA DA DIREITA (Ocupa 8 de 12 colunas - onde ficará a lista) */}
         <section className="col-span-8">
-          {/* Aqui entrará o <ServiceList /> no futuro */}
-          <div className="bg-slate-100 border-2 border-dashed border-slate-200 rounded-2xl h-[600px] flex items-center justify-center text-slate-400 font-medium">
-            As ordens de serviço aparecerão aqui...
-          </div>
+          <ServiceList />
         </section>
 
       </main>

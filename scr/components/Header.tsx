@@ -8,6 +8,7 @@ export const Header = () => {
     <span className="text-blue-600">i</span>
     <span className="font-semibold text-slate-800">Repair</span>
   </div>
+
   
   {/* LADO DIREITO: Painel e Perfil com ajuste manual de altura */}
   <div className="flex items-center gap-12 mr-4 translate-y-1">
