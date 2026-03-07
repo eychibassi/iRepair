@@ -19,7 +19,19 @@ function App() {
         //chama o setOrders para comunicar uma alteração na lista
         //nesse caso a adição de um novo elemento no final, logo após o spread(...)
     };
+    const deleteOrder = (id: string) => {
+  setOrders(prevOrders => prevOrders.filter(order => order.id !== id));
+}; //função para excluir uma OS
 
+const finishOrder = (id: string) => {
+  setOrders(prevOrders => 
+    prevOrders.map(order => 
+      order.id === id ? { ...order, status: 'finalizado' } : order
+    )
+  );
+}; //função para finalizar uma OS
+
+    
 return ( //prop orders passa os dados para o filho(ListaServicos) para eles trabalharem
     <div className="app-container">
             <Header />
@@ -33,11 +45,12 @@ return ( //prop orders passa os dados para o filho(ListaServicos) para eles trab
 
         {/* COLUNA DA DIREITA - onde ficará a lista) */}
         <section className="col-span-8">
-          <ServiceList orders={orders} />
+          <ServiceList orders={orders} onDelete={deleteOrder} onFinish={finishOrder}/>
         </section>
 
       </main>
     </div>
   );
 }
+
 export default App;

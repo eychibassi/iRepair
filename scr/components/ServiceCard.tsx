@@ -3,13 +3,12 @@ import { ServiceOrder, Status } from '../types';
 
 interface CardProps {
   order: ServiceOrder;
+  onDelete: (id: string) => void;
+  onFinish: (id: string) => void; 
 }
 
-interface CardProps {
-  order: ServiceOrder;
-}
 
-export const ServiceOrderCard = ({ order }: CardProps) => {
+export const ServiceOrderCard = ({ order,onDelete, onFinish }: CardProps) => {
   const isAberto = order.status === 'aberto';
 
   const dataCriacao = new Date(Number(order.id)).toLocaleDateString('pt-BR', {
@@ -22,21 +21,22 @@ export const ServiceOrderCard = ({ order }: CardProps) => {
 
   return (
     <div className={`
-      relative overflow-hidden
-      bg-white border border-slate-200 p-5 rounded-2xl 
-      shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] 
-      hover:shadow-xl hover:shadow-blue-500/10 
-      hover:-translate-y-1 transition-all duration-300
-      group border-l-[6px] ${isAberto ? 'border-l-blue-500' : 'border-l-emerald-500'}
-      mb-4
-    `}>
+  relative overflow-hidden p-5 rounded-2xl border border-slate-200 
+  transition-all duration-300 group border-l-[6px] mb-4
+
+  /* Lógica de Fundo, Borda e Sombra */
+  ${isAberto 
+    ? 'bg-white border-l-blue-500 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1' 
+    : 'bg-rose-200 border-l-slate-400 shadow-none opacity-80'}
+`}>
       
       {/* BOTÃO DE EXCLUIR OS*/}
       <div className="absolute top-4 right-4">
         <button 
+        onClick={() => onDelete(order.id)}
           className="
-            p-2 rounded-lg text-slate-400 
-            hover:bg-rose-50 hover:text-rose-500 hover:scale-110 active:scale-90
+            p-2 rounded-lg text-slate-400 bg-transparent
+            hover:bg-rose-200 hover:text-rose-500 hover:scale-110 active:scale-90
             transition-colors duration-200
           "
         >
@@ -79,7 +79,9 @@ export const ServiceOrderCard = ({ order }: CardProps) => {
           </span>
 
           {isAberto && (
-            <button className="
+            <button 
+            onClick={() => onFinish(order.id)}
+            className="
               text-[10px] font-black text-white bg-blue-600 
               px-4 py-2 rounded-lg shadow-sm
               hover:bg-blue-700  hover:scale-105 active:scale-95 transition-transform

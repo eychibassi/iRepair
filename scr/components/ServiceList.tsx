@@ -4,9 +4,11 @@ import { ServiceOrderCard } from './ServiceCard';
 
 interface ServiceListProps {
   orders: ServiceOrder[];
+  onDelete: (id: string) => void;
+  onFinish: (id: string) => void;
 }
 
-export const ServiceList = ({ orders }: ServiceListProps) => {
+export const ServiceList = ({ orders, onDelete, onFinish }: ServiceListProps) => {
 
   const abertas = orders.filter(o => o.status === 'aberto');
   const finalizadas = orders.filter(o => o.status === 'finalizado');
@@ -42,7 +44,7 @@ export const ServiceList = ({ orders }: ServiceListProps) => {
           <div className="flex flex-col gap-4">
             {abertas.length > 0 ? (
               abertas.map(ordem => (
-                <ServiceOrderCard key={ordem.id} order={ordem} />
+                <ServiceOrderCard key={ordem.id} order={ordem} onDelete={onDelete} onFinish={onFinish} />
               ))
             ) : (
               <div className="pt-20 text-center px-10">
@@ -62,7 +64,7 @@ export const ServiceList = ({ orders }: ServiceListProps) => {
           <div className="flex flex-col gap-4">
             {finalizadas.length > 0 ? (
               finalizadas.map(ordem => (
-                <ServiceOrderCard key={ordem.id} order={ordem} />
+                <ServiceOrderCard key={ordem.id} order={ordem} onDelete={onDelete} onFinish={onFinish}/>
               ))
             ) : (
               <div className="pt-20 text-center px-10">
