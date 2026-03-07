@@ -14,6 +14,7 @@ function App() {
     vazia e só aceita objetos com o formato da interface.  
     */
     const addOrder = (newOrder: ServiceOrder) =>{ //argumento newOrder do tipo ServiceOrder
+      console.log("Nova ordem recebida no App:", newOrder);
         setOrders([...orders, newOrder]);
         //chama o setOrders para comunicar uma alteração na lista
         //nesse caso a adição de um novo elemento no final, logo após o spread(...)
@@ -25,14 +26,14 @@ return ( //prop orders passa os dados para o filho(ListaServicos) para eles trab
     {/* Container principal com Grid para o Box ficar à esquerda */}
       <main className="max-w-[1600px] mx-auto px-10 grid grid-cols-12 gap-8">
         
-        {/* COLUNA DA ESQUERDA (Ocupa 4 de 12 colunas) */}
+        {/* COLUNA DA ESQUERDA */}
         <aside className="col-span-4">
-          <NewOrderBox />
-        </aside>
+                  <NewOrderBox onAddOrder={addOrder} />
+                </aside>
 
-        {/* COLUNA DA DIREITA (Ocupa 8 de 12 colunas - onde ficará a lista) */}
+        {/* COLUNA DA DIREITA - onde ficará a lista) */}
         <section className="col-span-8">
-          <ServiceList />
+          <ServiceList orders={orders} />
         </section>
 
       </main>
