@@ -26,7 +26,13 @@ function App() {
 const finishOrder = (id: string) => {
   setOrders(prevOrders => 
     prevOrders.map(order => 
-      order.id === id ? { ...order, status: 'finalizado' } : order
+      order.id === id 
+        ? { 
+            ...order, 
+            status: 'finalizado', 
+            finishedAt: Date.now() // <--- Adiciona o carimbo do momento exato do clique
+          } 
+        : order
     )
   );
 }; //função para finalizar uma OS

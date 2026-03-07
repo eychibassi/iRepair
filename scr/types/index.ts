@@ -9,4 +9,5 @@ export interface ServiceOrder{
     modeloAparelho: string;
     problema: string;
     status: Status;
+    finishedAt?: number;
 }

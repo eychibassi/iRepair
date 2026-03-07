@@ -18,6 +18,15 @@ export const ServiceOrderCard = ({ order,onDelete, onFinish }: CardProps) => {
     hour: '2-digit',
     minute: '2-digit'
   });
+  const dataConclusao = order.finishedAt 
+  ? new Date(order.finishedAt).toLocaleDateString('pt-BR', {
+       day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+    })
+  : null;
 
   return (
     <div className={`
@@ -73,10 +82,22 @@ export const ServiceOrderCard = ({ order,onDelete, onFinish }: CardProps) => {
 </div>
 
         {/* Rodapé com DATA e Ação */}
-        <div className="flex justify-between items-center mt-2 pt-3 border-t border-slate-50">
-          <span className="text-[11px] font-mono font-bold text-slate-400 uppercase">
-            {dataCriacao}
-          </span>
+<div className="flex justify-between items-center mt-2 pt-3 border-t border-slate-50">
+  
+  {/* Agrupador de Datas (para elas ficarem juntas à esquerda) */}
+  <div className="flex items-center gap-2">
+    <span className="text-[11px] font-mono font-bold text-slate-400 uppercase">
+      {dataCriacao}
+    </span>
+
+    {/* Só aparece se estiver finalizado */}
+    {!isAberto && dataConclusao && (
+      <span className="text-[11px] font-mono font-bold text-slate-400 uppercase">
+        - CONCLUÍDA EM: {dataConclusao}
+      </span>
+    )}
+  </div>
+          
 
           {isAberto && (
             <button 
