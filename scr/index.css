@@ -1,0 +1,10 @@
+/*estilo global do background
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Se quiser manter seu fundo cinza, pode colocar aqui abaixo */
+body {
+  background-color: #F8FAFC;
+}
