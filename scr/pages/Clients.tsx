@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { clientService } from '../services/clientService';
 import { Client } from '../types';
-import { NewClientBox } from '../components/NewClientBox'; 
+import { NewClientBox } from '../components/NewClientBox';
+ import { ClientList } from '../components/ClientList';
+
 
 export const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
@@ -16,6 +18,17 @@ export const Clients = () => {
       console.error("Error loading clients:", error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDeleteClient = async (id: number) => {
+    if (!confirm("Tem certeza que deseja remover este cliente?")) return;
+    try {
+      await clientService.delete(id);
+      setClients(prev => prev.filter(client => client.id !== id));
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao excluir cliente.");
     }
   };
 
@@ -34,13 +47,13 @@ export const Clients = () => {
         </aside>
 
         {/* LADO DIREITO: Espaço reservado para a lista */}
-        <section className="bg-slate-50 rounded-[2.5rem] p-10 border-2 border-dashed border-slate-200 min-h-[700px] flex flex-col items-center justify-center text-center">
-            <div className="opacity-30">
-                <p className="text-xl font-black italic uppercase text-slate-400 tracking-widest">
-                  Lista de Clientes
-                </p>
-            </div>
-        </section>
+        <section className="min-h-[700px]">
+  <ClientList 
+    clients={clients} 
+    isLoading={isLoading} 
+    onDelete={handleDeleteClient} 
+  />
+</section>
 
       </div>
     </div>

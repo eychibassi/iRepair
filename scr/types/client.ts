@@ -4,6 +4,7 @@ export interface Client {
   phone: string;
   email: string;
   created_at: string;
+  hasActiveOS?: boolean;
 }
 
 //(sem id e created_at, que são gerados pelo servidor)
