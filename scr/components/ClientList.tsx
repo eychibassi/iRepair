@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Client } from '../types';
 import { Search, Phone, Mail, Trash2, User, Filter } from 'lucide-react';
+import { ClientCard } from './ClientCard';
 
 interface ClientListProps {
   clients: Client[];
   isLoading: boolean;
   onDelete: (id: number) => void;
 }
+
 
 export const ClientList = ({ clients, isLoading, onDelete }: ClientListProps) => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -12,8 +12,29 @@ export const Clients = () => {
   const loadClients = async () => {
     try {
       setIsLoading(true);
-      const data = await clientService.getAll();
-      setClients(data);
+      //const data = await clientService.getAll();
+      //setClients(data);
+      //DADOS FICTÍCIOS PARA VIZUALIZAR OS CARDS
+    const mockData: Client[] = [
+  {
+    id: 1,
+    name: "Eduardo Kenzo",
+    email: "joao@mecanica.com",
+    phone: "(11) 98888-7777",
+    hasActiveOS: true,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: "Guilherme Kazuo",
+    email: "contato@silva.com",
+    phone: "(11) 91234-5678",
+    hasActiveOS: false,
+    created_at: new Date().toISOString()
+  }
+];
+    
+    setClients(mockData);
     } catch (error) {
       console.error("Error loading clients:", error);
     } finally {
