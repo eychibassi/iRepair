@@ -1,17 +1,41 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
+  const location = useLocation();
   return (
   <header className="sticky top-0 z-50 flex items-center justify-between py-8 px-10 mb-8 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2),0_8px_10px_-6px_rgba(0,0,0,0.2)] border-b border-slate-200 bg-white">
   {/* LADO ESQUERDO: iRepair */}
-  <div className="text-5xl tracking-tighter ml-0 font-bold flex items-center leading-[0.8]"> 
+  <div className="flex-1">
+  <Link to="/" className="text-5xl tracking-tighter ml-0 font-bold flex items-center leading-[0.8]"> 
     <span className="text-blue-600">i</span>
     <span className="font-semibold text-slate-800">Repair</span>
-  </div>
+  </Link>
+</div>
 
+<nav className="flex items-center gap-10">
+        <Link 
+          to="/" 
+          className={`text-xl font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-600 transition-all duration-300 transform hover:scale-110`}
+        >
+          Dashboard
+        </Link>
+        <Link 
+          to="/clients" 
+          className={`text-xl font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-600 transition-all duration-300 transform hover:scale-110`}
+        >
+          Clientes
+        </Link>
+        <Link 
+          to="/orders" 
+          className={`text-xl font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-600 transition-all duration-300 transform hover:scale-110`}
+        >
+          Ordens
+        </Link>
+      </nav>
   
   {/* LADO DIREITO: Painel e Perfil */}
-  <div className="flex items-center gap-12 mr-4 translate-y-1">
+  <div className="flex-1 flex items-center justify-end gap-12">
     {/* Indicador de Localização */}
     <div className="flex items-center gap-3">
       <span className="relative flex h-3 w-3">
