@@ -16,11 +16,11 @@ export const ServiceList = ({ orders, onDelete, onFinish }: ServiceListProps) =>
   return (
     <div className="flex flex-col gap-6 w-full mt-10">
       
-      <div className="text-center mb-6 pt-2"> 
-        <h2 className="text-2xl mb-4 font-black text-slate-800 tracking-tight uppercase">
-          - Dashboard de Acompanhamento -
+      <div className="text-center mb-6"> 
+        <h2 className="text-3xl font-black text-slate-800 tracking-tight">
+          - ORDENS DE SERVIÇO -
         </h2>
-        <div className="flex justify-center gap-8 mt-1">
+        <div className="flex justify-center gap-8 mt-1 pt-6">
           {/* Atualizamos os contadores para mostrar o tamanho real das listas */}
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
             Abertas: {abertas.length}

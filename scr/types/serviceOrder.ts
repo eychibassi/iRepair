@@ -10,4 +10,7 @@ export interface ServiceOrder{
     problema: string;
     status: Status;
     finishedAt?: number;
+    custo: number;
+  valorFinal: number;
+  lucro: number;
 }

@@ -68,17 +68,40 @@ export const ServiceOrderCard = ({ order,onDelete, onFinish }: CardProps) => {
     </h4>
   </div>
 
-  {/* Detalhes do Aparelho */}
-  <div className="flex flex-col gap-1">
-    <div className="flex items-center gap-2 mb-1">
-      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
-        Descrição do Defeito:
-      </p>
-    </div>
+  {/* Detalhes do Aparelho + Valores Financeiros */}
+<div className="flex flex-col gap-3">
+  <div>
+    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
+      Descrição do Defeito:
+    </p>
     <p className="font-bold text-slate-900 text-[14px] leading-tight">
       {order.problema}
     </p>
   </div>
+
+  {/* Linha de Valores - Lucro na Direita */}
+<div className="flex justify-between items-end pt-3 border-t border-slate-50">
+  {/* Esquerda: Valor do Cliente */}
+  <div className="flex flex-col">
+    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+      Valor Final
+    </p>
+    <p className="font-black text-slate-900 text-base leading-none mt-1">
+      {order.valorFinal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+    </p>
+  </div>
+  
+  {/* Direita: Seu Lucro */}
+  <div className="flex flex-col items-end">
+    <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest italic leading-none">
+      Lucro Gerado
+    </p>
+    <p className="font-black text-green-600 text-base leading-none mt-1">
+      +{order.lucro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+    </p>
+  </div>
+</div>
+</div>
 </div>
 
         {/* Rodapé com DATA e Ação */}
